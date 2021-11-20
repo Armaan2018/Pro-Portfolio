@@ -1,0 +1,1 @@
+@extends('fabosfront.layouts.app')
