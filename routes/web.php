@@ -21,8 +21,27 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+//admin page login
+Route::get('/admin/login', [App\Http\Controllers\AdminCmsController::class, 'adminLogin'])->name('adminlogin.show');
+//admin page register
+Route::get('/admin/register', [App\Http\Controllers\AdminCmsController::class, 'adminRegister'])->name('adminregister.show');
+
+
+Route::post('/admin/register/create', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('adminregister.create');
+
+
+Route::post('/admin/register', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('adminlogin.create');
+
+Route::post('admin/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('admin.logout');
+
+
+//middlewere function
+Route::group(['middleware' => 'auth'],function(){
+
+
 //backend Admin Dashboard Panel Showing
-Route::get('/dashboard', [App\Http\Controllers\AdminCmsController::class, 'index'])->name('dashboard');
+Route::get('/admin/dashboard', [App\Http\Controllers\AdminCmsController::class, 'getDashboard'])->name('admin.dashboard');
 
 //service section
 Route::get('/service', [App\Http\Controllers\SectionController::class, 'index'])->name('service');
@@ -134,7 +153,7 @@ Route::get('/experience', [App\Http\Controllers\ExperienceController::class, 'in
 Route::post('/experience-create', [App\Http\Controllers\ExperienceController::class, 'experienceCreate'])->name('experience.create');
 
 Route::get('/experience-show', [App\Http\Controllers\ExperienceController::class, 'experienceShow'])->name('review.show');
-
+});
 
 //FrontEnd Fabos Page Showing
 Route::get('/', [App\Http\Controllers\FrontFabosController::class, 'index'])->name('fabos');

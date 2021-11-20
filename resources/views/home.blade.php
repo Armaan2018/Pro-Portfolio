@@ -1,23 +1,38 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dash</title>
+</head>
+<body>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+        (function($){
+   $(document).ready(function(){
+
+
+
+    $(document).on('click','#logout_btn',function(e){
+        e.preventDefault();
+        $('#logout_form').submit();
+
+    });
+
+
+
+
+
+
+
+
+
+   });
+
+})(jQuery)
+</script>
+</body>
+</html>

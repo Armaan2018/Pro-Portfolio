@@ -7,10 +7,26 @@ use App\Models\Service;
 
 class AdminCmsController extends Controller
 {
-    
-    public function index()
+
+     public function __construct()
     {
-    	return view('admin.dashboard');
+        $this->middleware('guest')->except(['getDashboard']);
+    }
+    
+    public function getDashboard()
+    {
+    	return view('admin.layouts.dashboard');
+    }
+
+
+    public function adminLogin()
+    {
+    	return view('admin.page-login');
+    }
+
+    public function adminRegister()
+    {
+    	return view('admin.page-register');
     }
 
    
