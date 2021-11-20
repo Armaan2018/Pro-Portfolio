@@ -2,12 +2,12 @@
 <html lang="en">
 
 
-<!-- Mirrored from koki.dexignzone.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Nov 2021 07:31:47 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Koki - Bootstrap Admin Dashboard </title>
+    <title>Portfolio -Admin</title>
     <!-- Favicon icon -->
    
    <!-- include css part -->
@@ -117,5 +117,4 @@
 	@include('admin.layouts.partials.js')
 </body>
 
-<!-- Mirrored from koki.dexignzone.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Nov 2021 07:32:11 GMT -->
 </html>

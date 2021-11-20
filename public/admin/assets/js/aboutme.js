@@ -4,6 +4,7 @@
 
 
           // $('div#aboutmedemo').hide();
+           $('div#about_card_body').hide();
            $('div#about_card_body_edit').hide();
            $('div#header_card_body_edit').hide();
            $('div#social_card_body_edit').hide();
@@ -259,7 +260,7 @@
             success:function(response){
                
                 toastr.success('Yaap Your Section Updated!', 'Great');
-                $('div#aboutmedemo').show();
+               
                 $('div#about_card_body_edit').hide();
               window.location.href = "/aboutme";
               
@@ -331,7 +332,7 @@
                 
                 $('div#social_form_edit').hide();
               window.location.href = "/social";
-              $('div#socialdemo').show();
+              
               
 
 
