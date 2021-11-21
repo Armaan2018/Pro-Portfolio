@@ -34,9 +34,9 @@ class FrontFabosController extends Controller
       Sender::create([
 
 
-         'name' => $request -> sender_name,
-         'email' => $request -> sender_email,
-         'msg' => $request -> sender_msg,
+         'name' => $request -> name,
+         'email' => $request -> email,
+         'msg' => $request -> msg,
 
       ]); 
 

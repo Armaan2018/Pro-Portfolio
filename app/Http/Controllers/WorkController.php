@@ -91,6 +91,82 @@ public function categoryAdd(Request $request){
     }
 
 
+     public function workEdit($id)
+    {
+      $workedit = Work::findOrFail($id);
+
+      
+      foreach ($workedit -> categories as $keyss) {
+        $nav = $keyss -> category_name;
+        $nav_id = $keyss -> id;
+      }
+
+     
+
+
+
+
+     
+
+      return [
+
+        'title'                           => $workedit -> title,
+        'work_link'                       => $workedit -> work_link,
+        'image'                           => $workedit -> image,
+        'category'                        => $nav,
+        'work_id'                         => $workedit -> id,
+        'cat_id'                          => $nav_id,
+        
+
+
+      ];
+
+      return response() -> json(['success','data edited']);
+      
+    }
+
+
+     public function workUpdate(Request $request)
+    {
+
+      $get_id_work = $request -> work_id;
+
+
+      $work_update = Work::findOrFail($get_id_work);
+
+ $unique_file_name = $request -> old_work_image;
+
+
+         
+       if ($request -> hasFile('image')) {
+
+            $img = $request -> file('image');
+
+            $unique_file_name = md5(time().rand()).'.'. $img -> getClientOriginalExtension();
+
+            $img -> move(public_path('public/media/work/'), $unique_file_name);
+        }else{
+
+             unset($img);
+        }
+
+
+
+
+      $work_update -> title = $request -> title;
+
+      $work_update -> work_link = $request -> work_link;
+
+      $work_update -> image = $unique_file_name;
+
+      $work_update -> update();
+
+     
+
+      
+    }
+
+
     //work show
 
     public function workShow()
@@ -110,11 +186,71 @@ public function categoryAdd(Request $request){
                                                 <td><a class="text-info" href="<?php echo $element -> work_link; ?>"><?php echo $element -> work_link; ?></a></td>
                                                 
                                                 <td>Active</td>
-                                                <td class="color-primary">Edit || Delete</td>
+                                                 <td class="color-primary"><div class="d-flex">
+                            <a href="" data-toggle="modal" data-target="#editworkmodal" id="work_edit_btn" work_edit_attr="<?php echo $element -> id; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil">
+                              
+                            </i></a>
+                            <a href="" id="del_work_id" del_work_attr="<?php echo $element -> id ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                          </div></td>
                                             </tr>
                                             
     	<?php }
 
+    }
+
+
+
+
+    public function categoryEdit($id)
+    {
+      $editid = Category::findOrFail($id);
+
+      return [
+
+        'category_name'                   => $editid -> category_name,
+        'category_id'                     => $editid -> id
+
+
+
+      ];
+
+      return response() -> json(['success','data edited']);
+      
+    }
+
+
+    public function categoryUpdate(Request $request)
+    {
+
+      $get_id = $request -> category_id;
+
+
+      $update_cat = Category::findOrFail($get_id);
+
+      $update_cat -> category_name = $request -> category_name;
+
+      $update_cat -> category_slug = Str::slug($request -> category_name);
+
+      $update_cat -> update();
+
+
+
+
+      
+    }
+
+
+
+    public function categoryDelete($id)
+    {
+      $delid = Category::findOrFail($id);
+      $delid -> delete();
+    } 
+
+    public function workDelete($id)
+    {
+      $delid = Work::findOrFail($id);
+      $delid -> delete();
     }
 
 
@@ -134,7 +270,12 @@ public function categoryAdd(Request $request){
                                               
                                                 
                                                 <td>Active</td>
-                                                <td class="color-primary">Edit || Delete</td>
+                                                <td class="color-primary"><div class="d-flex">
+                            <a href="" data-toggle="modal" data-target="#editcatmodal" id="cat_edit_btn" cat_edit_attr="<?php echo $element -> id; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil">
+                              
+                            </i></a>
+                            <a href="" id="del_cat_id" del_cat_attr="<?php echo $element -> id ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                          </div></td>
                                             </tr>
                                             
     	<?php }

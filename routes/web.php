@@ -63,12 +63,25 @@ Route::post('/service-update', [App\Http\Controllers\SectionController::class, '
 Route::get('/work', [App\Http\Controllers\WorkController::class, 'workSectionShow'])->name('work');
 Route::post('/work-category-add', [App\Http\Controllers\WorkController::class, 'categoryAdd'])->name('work.category.add');
 
+Route::get('/work-category-edit/{id}', [App\Http\Controllers\WorkController::class, 'categoryEdit'])->name('work.category.edit');
+
+Route::get('/work-category-delete/{id}', [App\Http\Controllers\WorkController::class, 'categoryDelete'])->name('work.category.delete');
+
+
+Route::post('/work-category-update', [App\Http\Controllers\WorkController::class, 'categoryUpdate'])->name('work.category.update');
+
 Route::post('/work-add', [App\Http\Controllers\WorkController::class, 'workAdd'])->name('work.add');
 
 
 Route::get('/category-show', [App\Http\Controllers\WorkController::class, 'categoryShow'])->name('category.show');
 
 Route::get('/work-show', [App\Http\Controllers\WorkController::class, 'workShow'])->name('work.show');
+
+Route::get('/work-edit/{id}', [App\Http\Controllers\WorkController::class, 'workEdit'])->name('work.edit');
+
+Route::get('/work-delete/{id}', [App\Http\Controllers\WorkController::class, 'workDelete'])->name('work.delete');
+
+Route::post('/work-update', [App\Http\Controllers\WorkController::class, 'workUpdate'])->name('work.update');
 
 //about Section
 
@@ -124,10 +137,14 @@ Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name
 Route::post('/blog-create', [App\Http\Controllers\BlogController::class, 'blogCreate'])->name('blog.create');
 Route::get('/blog-show', [App\Http\Controllers\BlogController::class, 'blogShow'])->name('blog.show');
 
+Route::get('/blog-delete/{id}', [App\Http\Controllers\BlogController::class, 'blogDelete'])->name('blog.delete');
+
 //review
 Route::get('/review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review');
 Route::post('/review-create', [App\Http\Controllers\ReviewController::class, 'reviewCreate'])->name('review.create');
 Route::get('/review-show', [App\Http\Controllers\ReviewController::class, 'reviewShow'])->name('review.show');
+
+Route::get('/review-delete/{id}', [App\Http\Controllers\ReviewController::class, 'reviewDelete'])->name('review.delete');
 
 
 //slider
@@ -144,7 +161,9 @@ Route::get('/education', [App\Http\Controllers\EducationController::class, 'inde
 
 Route::post('/education-create', [App\Http\Controllers\EducationController::class, 'educationCreate'])->name('education.create');
 
-Route::get('/education-show', [App\Http\Controllers\EducationController::class, 'educationShow'])->name('review.show');
+Route::get('/education-show', [App\Http\Controllers\EducationController::class, 'educationShow'])->name('education.show');
+
+Route::get('/education-delete/{id}', [App\Http\Controllers\EducationController::class, 'educationDelete'])->name('education.delete');
 
 //experience
 
@@ -153,9 +172,17 @@ Route::get('/experience', [App\Http\Controllers\ExperienceController::class, 'in
 Route::post('/experience-create', [App\Http\Controllers\ExperienceController::class, 'experienceCreate'])->name('experience.create');
 
 Route::get('/experience-show', [App\Http\Controllers\ExperienceController::class, 'experienceShow'])->name('review.show');
+
+Route::get('/exp-delete/{id}', [App\Http\Controllers\ExperienceController::class, 'expDelete'])->name('experience.show');
+
 });
 
-//FrontEnd Fabos Page Showing
-Route::get('/', [App\Http\Controllers\FrontFabosController::class, 'index'])->name('fabos');
 
-Route::post('/contact-msg', [App\Http\Controllers\FrontFabosController::class, 'senderMsg'])->name('send.contact');
+//FrontEnd Fabos Page Showing
+Route::get('/fabos', [App\Http\Controllers\FrontFabosController::class, 'index'])->name('fabos');
+
+Route::post('/contact-msg', [App\Http\Controllers\NillFrontController::class, 'senderMsg'])->name('send.contact');
+
+//FrontEnd Nill Page Showing
+Route::get('/', [App\Http\Controllers\NillFrontController::class, 'index'])->name('nill');
+

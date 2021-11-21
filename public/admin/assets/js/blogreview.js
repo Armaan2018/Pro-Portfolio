@@ -271,8 +271,161 @@ function showExperience(){
 
 showExperience();
 
+//review Delete
+$(document).on('click','a#del_rev_id',function(e){
+    e.preventDefault();
+
+  let rev_get_id = $(this).attr('del_rev_attr');  
+       swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this review!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    $.ajax({
+        url:'review-delete/' + rev_get_id,
+        success:function(response){
+             swal("Opps! This Review has been deleted!", {
+      icon: "success",
+    });
+            toastr.success('Review Deleted!', 'Oppps');
+            showReviews();
 
 
+
+        }
+    })
+    
+  } else {
+    swal("Review Not Deleted");
+    
+  }
+});
+
+
+});
+
+
+
+//blog Delete
+$(document).on('click','a#del_blog_id',function(e){
+    e.preventDefault();
+
+  let blog_get_id = $(this).attr('del_blog_attr');  
+       swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this blog!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    $.ajax({
+        url:'blog-delete/' + blog_get_id,
+        success:function(response){
+             swal("Opps! This Blog has been deleted!", {
+      icon: "success",
+    });
+            toastr.success('Blog Deleted!', 'Oppps');
+            showBlogs();
+
+
+
+        }
+    })
+    
+  } else {
+    swal("Blog Not Deleted");
+    
+  }
+});
+
+
+});
+
+
+//education Delete
+$(document).on('click','a#del_edu_id',function(e){
+    e.preventDefault();
+
+  let edu_get_id = $(this).attr('del_edu_attr');  
+       swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this blog!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    $.ajax({
+        url:'education-delete/' + edu_get_id,
+        success:function(response){
+             swal("Opps! This education section has been deleted!", {
+      icon: "success",
+    });
+            toastr.warning('this education Deleted!', 'Oppps');
+            showEducation();
+
+
+
+        }
+    })
+    
+  } else {
+    swal("Education Not Deleted");
+    
+  }
+});
+
+
+});
+
+
+//experience Delete
+$(document).on('click','a#del_exp_id',function(e){
+    e.preventDefault();
+
+  let exp_get_id = $(this).attr('del_exp_attr');  
+       swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this blog!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    $.ajax({
+        url:'exp-delete/' + exp_get_id,
+        success:function(response){
+             swal("Opps! This experience section has been deleted!", {
+      icon: "success",
+    });
+            toastr.warning('this experience Deleted!', 'Oppps');
+            showExperience();
+
+
+
+        }
+    })
+    
+  } else {
+    swal("This Experience Not Deleted");
+    
+  }
+});
+
+
+});
 
 
     });

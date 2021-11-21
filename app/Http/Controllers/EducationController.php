@@ -63,9 +63,22 @@ class EducationController extends Controller
     			<td><?php echo $element -> years; ?></td>
     			<td><?php echo $element -> description; ?></td>
     			<td>Active</td>
-    			<td>edit||delete</td>
+    			<td class="color-primary"><div class="d-flex">
+                            <a href="" data-toggle="modal" data-target="#" id="edu_edit_btn" edu_edit_attr="<?php echo $element -> id; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil">
+                              
+                            </i></a>
+                            <a href="" id="del_edu_id" del_edu_attr="<?php echo $element -> id ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                          </div></td>
     		</tr>
     		
     	<?php }
+    }
+
+
+     public function educationDelete($id)
+    {
+       $blogdel = Education::findOrFail($id);
+       $blogdel -> delete();
+
     }
 }
