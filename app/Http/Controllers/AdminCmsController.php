@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\Sender;
 
 class AdminCmsController extends Controller
 {
@@ -15,7 +16,8 @@ class AdminCmsController extends Controller
     
     public function getDashboard()
     {
-    	return view('admin.layouts.dashboard');
+        $sender = Sender::latest()->get();
+    	return view('admin.sections.dashboard',compact('sender'));
     }
 
 

@@ -46,6 +46,7 @@
                             </div>
                         </div>
                         <div class="row pt-6">
+                            <div class="col-lg-3"></div>
                             <div class="col-lg-6">
                                 <div class="skill-box pt-4 pt-lg-0 mt-4 mt-lg-0">
                                     @foreach ($skill as $skill)
@@ -61,6 +62,7 @@
                                   
                                 </div>
                             </div>
+                            <div class="col-lg-3"></div>
                           {{--   <div class="col-lg-6">
                                 <div class="skill-box pt-4 pt-lg-0 mt-4 mt-lg-0">
                                     <div class="skillbar clearfix" data-percent="95%">

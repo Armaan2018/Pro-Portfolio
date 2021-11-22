@@ -1,8 +1,8 @@
  <nav class="navbar navbar-expand-lg navbar-dark">
          <div class="container">
             <!-- LOGO -->
-            <a class="navbar-brand logo" href="index.html">
-            Fabon
+            <a class="navbar-brand logo" href="{{ route('fabos') }}">
+            Armaan
             </a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

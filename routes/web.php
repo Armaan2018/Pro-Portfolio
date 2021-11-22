@@ -155,6 +155,12 @@ Route::post('/slider-create', [App\Http\Controllers\SliderController::class, 'sl
 
 Route::get('/slider-show', [App\Http\Controllers\SliderController::class, 'sliderShow'])->name('review.show');
 
+Route::get('/slider-delete/{id}', [App\Http\Controllers\SliderController::class, 'sliderDelete'])->name('slider.delete');
+
+Route::get('/slider-edit/{id}', [App\Http\Controllers\SliderController::class, 'sliderEdit'])->name('slider.edit');
+
+Route::post('/slider-update', [App\Http\Controllers\SliderController::class, 'sliderUpdate'])->name('slider.update');
+
 
 //education
 Route::get('/education', [App\Http\Controllers\EducationController::class, 'index'])->name('education');

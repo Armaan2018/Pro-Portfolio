@@ -7,9 +7,9 @@
    
 
     <!--  Pre Loader  -->
-    {{-- <div id="overlayer">
+    <div id="overlayer">
         <span class="spinner-grow spinner-grow-lg loader" role="status" aria-hidden="true"></span>
-    </div> --}}
+    </div>
 
 
         <!-- Blog Single Modal -->

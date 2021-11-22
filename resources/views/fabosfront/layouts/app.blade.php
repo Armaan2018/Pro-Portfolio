@@ -60,6 +60,6 @@
       @include('fabosfront.layouts.partials.js')
    </body>
 
-<!-- Mirrored from themescare.com/demos/fabon-preview2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Nov 2021 16:44:18 GMT -->
+
 </html>
 

@@ -24,7 +24,7 @@
                             @foreach ($about as $aboutme)
                               
                            
-                            <img src="{{URL::to('')}}/public/media/work/{{$aboutme -> image}}" alt="" class="rounded-circle img-thumbnail">
+                            <img style="width: 400px;" src="{{URL::to('')}}/public/media/work/{{$aboutme -> image}}" alt="" class="rounded-circle img-thumbnail">
                             <h3 class="text-dark mb-0 mt-3">I'M {{$aboutme -> name}}</h3>
 
                               @endforeach
