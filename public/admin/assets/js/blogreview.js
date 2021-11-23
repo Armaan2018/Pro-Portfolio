@@ -115,6 +115,29 @@ let file_url = URL.createObjectURL(e.target.files[0]);
 
 
 
+  //blog edit
+
+ $(document).on('click','a#blog_edit_btn',function(event){
+    event.preventDefault();
+
+    let blog_edit_attr = $(this).attr('blog_edit_attr');
+
+    $.ajax({
+        url:'blog-edit/' + blog_edit_attr,
+        success:function(response){
+            $('#editblogmodal     input[name="title"]').val(response.title);
+            $('#editblogmodal     input[name="old_blog_image"]').val(response.image);
+            $('#editblogmodal     textarea[name="content"]').val(response.content);
+            $('#editblogmodal     input[name="blog_id"]').val(response.id);
+            $('#editblogmodal     img#blog_image_load').attr('src','public/media/work'+'/'+response.image);
+           
+        }
+    });
+
+  });
+
+
+
  //slider update
   $(document).on('submit','form#slider_form_edit',function(event){
         event.preventDefault();
@@ -131,6 +154,40 @@ let file_url = URL.createObjectURL(e.target.files[0]);
                 showSliders();
                 toastr.success('Yaap Your Slider Updated!', 'Great');
                 $('#slider_edit_modal').hide();
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+
+
+            },
+            // error:function(response){
+
+            //      $('div#alert_error_id').show();
+            //      $('div#alert_error_id').text(response.responseJSON.errors.title);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.description);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.servicelink);
+            // }
+        });
+    });
+
+
+
+    //Blog update
+  $(document).on('submit','form#blog_edit_form',function(event){
+        event.preventDefault();
+
+        
+
+        $.ajax({
+            url:'blog-update',
+            method:'POST',
+            data:new FormData(this),
+            contentType:false,
+            processData:false,
+            success:function(response){
+                showBlogs();
+                toastr.success('Yaap Your Blog Updated!', 'Great');
+                $('#editblogmodal').hide();
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
 

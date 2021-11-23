@@ -139,6 +139,10 @@ Route::get('/blog-show', [App\Http\Controllers\BlogController::class, 'blogShow'
 
 Route::get('/blog-delete/{id}', [App\Http\Controllers\BlogController::class, 'blogDelete'])->name('blog.delete');
 
+Route::get('/blog-edit/{id}', [App\Http\Controllers\BlogController::class, 'blogEdit'])->name('blog.edit');
+
+Route::post('/blog-update', [App\Http\Controllers\BlogController::class, 'blogUpdate'])->name('blog.update');
+
 //review
 Route::get('/review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review');
 Route::post('/review-create', [App\Http\Controllers\ReviewController::class, 'reviewCreate'])->name('review.create');

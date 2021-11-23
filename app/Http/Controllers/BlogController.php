@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use  Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -72,7 +73,7 @@ class BlogController extends Controller
     			<td><?php echo $shorten; ?></td>
     			<td>Active</td>
     			<td class="color-primary"><div class="d-flex">
-                            <a href="" data-toggle="modal" data-target="#" id="blog_edit_btn" blog_edit_attr="<?php echo $element -> id; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil">
+                            <a href="" data-toggle="modal" data-target="#editblogmodal" id="blog_edit_btn" blog_edit_attr="<?php echo $element -> id; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil">
                               
                             </i></a>
                             <a href="" id="del_blog_id" del_blog_attr="<?php echo $element -> id ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
@@ -83,11 +84,57 @@ class BlogController extends Controller
     }
 
 
+    public function blogEdit($id)
+    {
+        $blog_id = Blog::findOrFail($id);
+
+        return [
+
+            'id'      => $blog_id -> id,
+            'title'   => $blog_id -> title,
+            'image'   => $blog_id -> image,
+            'content' => $blog_id -> content,
+
+
+
+
+        ];
+    }
+
+
+
+    public function blogUpdate(Request $request)
+    {
+        $get_id = $request -> blog_id;
+        $find_update = Blog::findOrFail($get_id);
+
+          $unique_file_name = $request -> old_blog_image;
+
+        if ($request -> hasFile('image')) {
+
+            $img = $request -> file('image');
+
+            $unique_file_name = md5(time().rand()).'.'. $img -> getClientOriginalExtension();
+
+            $img -> move(public_path('public/media/work/'), $unique_file_name);
+
+             File::delete('public/media/work/'.$request-> old_blog_image);
+        }
+
+        $find_update -> title   = $request -> title;
+        $find_update -> content = $request -> content;
+        $find_update -> image   = $unique_file_name;
+        $find_update ->update();
+    }
+
+
 
     public function blogDelete($id)
     {
        $blogdel = Blog::findOrFail($id);
        $blogdel -> delete();
+       File::delete('public/media/work/'.$blogdel-> image);
+       
 
     }
 }
