@@ -114,6 +114,29 @@ let file_url = URL.createObjectURL(e.target.files[0]);
   });
 
 
+  //Review edit
+
+ $(document).on('click','a#rev_edit_btn',function(event){
+    event.preventDefault();
+
+    let review_edit_id = $(this).attr('rev_edit_attr');
+
+    $.ajax({
+        url:'review-edit/' + review_edit_id,
+        success:function(response){
+            $('#editreviewmodal input[name="name"]').val(response.name);
+            $('#editreviewmodal textarea[name="review"]').val(response.review);
+            $('#editreviewmodal input[name="get_id_review"]').val(response.id);
+            $('#editreviewmodal input[name="role"]').val(response.role);
+            $('#editreviewmodal input[id="old_reviewer_img"]').val(response.image);
+            $('#editreviewmodal img#reviewer_image_load').attr('src','public/media/work'+'/'+response.image);
+           
+        }
+    });
+
+  });
+
+
 
   //blog edit
 
@@ -188,6 +211,40 @@ let file_url = URL.createObjectURL(e.target.files[0]);
                 showBlogs();
                 toastr.success('Yaap Your Blog Updated!', 'Great');
                 $('#editblogmodal').hide();
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+
+
+            },
+            // error:function(response){
+
+            //      $('div#alert_error_id').show();
+            //      $('div#alert_error_id').text(response.responseJSON.errors.title);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.description);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.servicelink);
+            // }
+        });
+    });    
+
+
+
+    //Blog update
+  $(document).on('submit','form#review_form_edit',function(event){
+        event.preventDefault();
+
+        
+
+        $.ajax({
+            url:'review-update',
+            method:'POST',
+            data:new FormData(this),
+            contentType:false,
+            processData:false,
+            success:function(response){
+                showReviews();
+                toastr.success('Yaap Your Review Updated!', 'Great');
+                $('#editreviewmodal').hide();
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
 

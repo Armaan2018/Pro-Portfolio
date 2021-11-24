@@ -151,6 +151,11 @@ Route::get('/review-show', [App\Http\Controllers\ReviewController::class, 'revie
 Route::get('/review-delete/{id}', [App\Http\Controllers\ReviewController::class, 'reviewDelete'])->name('review.delete');
 
 
+Route::get('/review-edit/{id}', [App\Http\Controllers\ReviewController::class, 'reviewEdit'])->name('review.edit');
+
+Route::post('/review-update', [App\Http\Controllers\ReviewController::class, 'reviewUpdate'])->name('review.update');
+
+
 //slider
 
 Route::get('/slider', [App\Http\Controllers\SliderController::class, 'index'])->name('slider');
