@@ -215,6 +215,31 @@
          }); 
 
 
+
+         //Skill Edit
+         $(document).on('click','a#skill_edit_btn',function(event){
+          event.preventDefault();
+
+          let skill_edit_attr = $(this).attr('skill_edit_attr');
+
+          
+
+           $.ajax({
+
+            url: 'skill-edit/' + skill_edit_attr,
+            success:function(response){
+             $("#skillmodal   input[name='skillname']").val(response.skillname);
+             $("#skillmodal   input[name='skillparcentage']").val(response.skillparcentage);
+             $("#skillmodal   input[name='get_skill_id']").val(response.skillid);
+            }
+
+
+           });
+
+
+         }); 
+
+
          //header edit card showing
          $(document).on('click','a#editbtnheader',function(event){
           event.preventDefault();
@@ -348,8 +373,85 @@
             //      $('div#alert_error_id').text(response.responseJSON.errors.servicelink);
             // }
         });
+    });  
+
+
+     ///update form skill
+ $(document).on('submit','form#skill_form_edit',function(event){
+        event.preventDefault();
+
+        
+
+        $.ajax({
+            url:'skill-update',
+            method:'POST',
+            data:new FormData(this),
+            contentType:false,
+            processData:false,
+            success:function(response){
+                
+                skillAll();
+                toastr.success('Yaap skill Updated!', 'Great');
+                $('#skillmodal').hide();
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                
+             
+              
+              
+
+
+
+            },
+            // error:function(response){
+
+            //      $('div#alert_error_id').show();
+            //      $('div#alert_error_id').text(response.responseJSON.errors.title);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.description);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.servicelink);
+            // }
+        });
     });
 
+
+//skill delete
+
+$(document).on('click','a#del_skill_id',function(e){
+    e.preventDefault();
+
+  let del_skill_attr = $(this).attr('del_skill_attr');  
+       swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this skill!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    $.ajax({
+        url:'skill-delete/' + del_skill_attr,
+        success:function(response){
+             swal("Opps! This skill has been deleted!", {
+      icon: "success",
+    });
+            toastr.success('skill Deleted!', 'Oppps');
+            skillAll();
+
+
+
+        }
+    })
+    
+  } else {
+    swal("Skill Not Deleted");
+    
+  }
+});
+
+
+});
 
 
  $(document).on('submit','form#skill_form',function(event){

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use Illuminate\Support\Facades\Validator;
 use  Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+
 
 
 class ReviewController extends Controller
@@ -66,12 +68,13 @@ class ReviewController extends Controller
     	$i = 1;
 
     	foreach ($bloget as $element) { ?>
+            <?php $shorten =  Str::of(htmlspecialchars($element -> review))->words(10) ?>
     		<tr>
     			<th><?php echo $i; $i++; ?></th>
     			<td><?php echo $element -> name; ?></td>
     			<td><?php echo $element -> role; ?></td>
     			<td><img width="60px;" src="public/media/work/<?php echo $element -> reviewer_image ?>"></td>
-    			<td><?php echo $element -> review; ?></td>
+    			<td><?php echo $shorten; ?></td>
     			<td>Active</td>
     			<td class="color-primary"><div class="d-flex">
                             <a href="" data-toggle="modal" data-target="#editreviewmodal" id="rev_edit_btn" rev_edit_attr="<?php echo $element -> id; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil">

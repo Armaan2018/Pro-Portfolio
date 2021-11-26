@@ -323,6 +323,115 @@ $(document).on('submit','form#education_form',function(event){
     });
 
 
+//education edit
+
+ $(document).on('click','a#edu_edit_btn',function(event){
+    event.preventDefault();
+
+    let edu_edit_attr = $(this).attr('edu_edit_attr');
+
+    $.ajax({
+        url:'education-edit/' + edu_edit_attr,
+        success:function(response){
+            $('#edueditmodal     input[name="passedfrom"]').val(response.passedfrom);
+            $('#edueditmodal     input[name="educlass"]').val(response.educlass);
+            $('#edueditmodal     input[name="years"]').val(response.years);
+            $('#edueditmodal     textarea[name="description"]').val(response.description);
+            $('#edueditmodal     input[name="get_id_edu"]').val(response.id);
+            
+           
+        }
+    });
+
+  });
+
+
+ //education update
+  $(document).on('submit','form#education_edit_form',function(event){
+        event.preventDefault();
+
+        
+
+        $.ajax({
+            url:'education-update',
+            method:'POST',
+            data:new FormData(this),
+            contentType:false,
+            processData:false,
+            success:function(response){
+                showEducation();
+                toastr.success('Education Updated!', 'Great');
+                $('#edueditmodal').hide();
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+
+
+            },
+            // error:function(response){
+
+            //      $('div#alert_error_id').show();
+            //      $('div#alert_error_id').text(response.responseJSON.errors.title);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.description);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.servicelink);
+            // }
+        });
+    });
+
+
+  //experience edit
+
+ $(document).on('click','a#exp_edit_btn',function(event){
+    event.preventDefault();
+
+    let exp_edit_attr = $(this).attr('exp_edit_attr');
+
+    $.ajax({
+        url:'exp-edit/' + exp_edit_attr,
+        success:function(response){
+            $('#editexpmodal     input[name="role"]').val(response.role);
+            $('#editexpmodal     input[name="years"]').val(response.years);
+            $('#editexpmodal     textarea[name="description"]').val(response.description);
+            $('#editexpmodal     input[name="get_id_exp"]').val(response.id);
+            
+           
+        }
+    });
+
+  });
+
+
+ $(document).on('submit','form#experience_edit_form',function(event){
+        event.preventDefault();
+
+        
+
+        $.ajax({
+            url:'exp-update',
+            method:'POST',
+            data:new FormData(this),
+            contentType:false,
+            processData:false,
+            success:function(response){
+                showExperience();
+                toastr.success('experience Updated!', 'Great');
+                $('#editexpmodal').hide()
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+
+
+            },
+            // error:function(response){
+
+            //      $('div#alert_error_id').show();
+            //      $('div#alert_error_id').text(response.responseJSON.errors.title);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.description);
+            //      $('div#alert_error_id').text(response.responseJSON.errors.servicelink);
+            // }
+        });
+    });
+
 ///review create
  $(document).on('submit','form#review_form',function(event){
         event.preventDefault();

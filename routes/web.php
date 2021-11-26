@@ -109,6 +109,13 @@ Route::post('/skill-create', [App\Http\Controllers\AboutMeController::class, 'sk
 
 Route::get('/skill-show', [App\Http\Controllers\AboutMeController::class, 'skillShowAll'])->name('skill.show');
 
+Route::get('/skill-edit/{id}', [App\Http\Controllers\AboutMeController::class, 'skillEdit'])->name('skill.edit');
+
+Route::post('/skill-update', [App\Http\Controllers\AboutMeController::class, 'skillUpdate'])->name('skill.update');
+
+Route::get('/skill-delete/{id}', [App\Http\Controllers\AboutMeController::class, 'skillDelete'])->name('skill.delete');
+
+
 //header
 Route::get('/home-part', [App\Http\Controllers\HeaderController::class, 'headerPart'])->name('homeheader');
 
@@ -121,7 +128,7 @@ Route::get('/header-edit/{id}', [App\Http\Controllers\HeaderController::class, '
 Route::post('/header-update', [App\Http\Controllers\HeaderController::class, 'headerUpdate'])->name('header.update');
 
 
-//Socail
+//Social
 Route::get('/social', [App\Http\Controllers\SocialController::class, 'index'])->name('social');
 
 Route::post('/social-create', [App\Http\Controllers\SocialController::class, 'socialCreate'])->name('social.create');
@@ -180,6 +187,10 @@ Route::get('/education-show', [App\Http\Controllers\EducationController::class, 
 
 Route::get('/education-delete/{id}', [App\Http\Controllers\EducationController::class, 'educationDelete'])->name('education.delete');
 
+
+Route::get('/education-edit/{id}', [App\Http\Controllers\EducationController::class, 'educationEdit'])->name('education.edit');
+Route::post('/education-update', [App\Http\Controllers\EducationController::class, 'educationUpdate'])->name('education.update');
+
 //experience
 
 Route::get('/experience', [App\Http\Controllers\ExperienceController::class, 'index'])->name('experience');
@@ -189,6 +200,11 @@ Route::post('/experience-create', [App\Http\Controllers\ExperienceController::cl
 Route::get('/experience-show', [App\Http\Controllers\ExperienceController::class, 'experienceShow'])->name('review.show');
 
 Route::get('/exp-delete/{id}', [App\Http\Controllers\ExperienceController::class, 'expDelete'])->name('experience.show');
+
+
+Route::get('/exp-edit/{id}', [App\Http\Controllers\ExperienceController::class, 'expEdit'])->name('exp.edit');
+
+Route::post('/exp-update', [App\Http\Controllers\ExperienceController::class, 'expUpdate'])->name('exp.update');
 
 });
 

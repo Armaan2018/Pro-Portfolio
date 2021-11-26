@@ -63,12 +63,45 @@ class AboutMeController extends Controller
              <th><?php echo $i; $i++; ?></th>
           <td><?php echo $key -> skillname ?> </td>
           <td><?php echo $key -> skillparcentage ?> </td>
-          <td><?php echo $key -> orderno ?> </td>s
+          <td><?php echo $key -> orderno ?> </td>
           <td>Active</td>
-          <td>edit || delete</td>
+          <td class="color-primary"><div class="d-flex">
+                            <a href="" data-toggle="modal" data-target="#skillmodal" id="skill_edit_btn" skill_edit_attr="<?php echo $key -> id; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil">
+                              
+                            </i></a>
+                            <a href="" id="del_skill_id" del_skill_attr="<?php echo $key -> id ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                          </div></td>
         </tr>
          
       <?php }
+    }
+
+
+    public function skillEdit($id)
+    {
+        $skilledit = Skill::findOrFail($id);
+        return [
+
+            'skillname'       => $skilledit -> skillname,
+            'skillparcentage' => $skilledit -> skillparcentage,
+            'skillid'         => $skilledit -> id
+
+
+
+        ];
+    }
+
+
+    public function skillUpdate(Request $request)
+    {
+       $get_id = $request -> get_skill_id;
+
+       $check_id = Skill::findOrFail($get_id);
+
+
+       $check_id -> skillname = $request -> skillname;
+       $check_id -> skillparcentage = $request -> skillparcentage;
+       $check_id -> update();
     }
 
 
@@ -120,6 +153,13 @@ class AboutMeController extends Controller
 
 
 
+    }
+
+
+    public function skillDelete($id)
+    {
+        $del_id = Skill::findOrFail($id);
+        $del_id -> delete();
     }
 
 
